@@ -52,36 +52,15 @@ class SearchViewController: UIViewController {
             self.resultsTableView.setContentOffset(CGPoint.zero, animated: false)
         }
     }
-    
+
 }
 // MARK: SearchBar Delegate
 extension SearchViewController: UISearchBarDelegate {
-   //FIXME: needs refactor, move the request logic out of the ViewController
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         dismissKeyboard()
         guard let text = searchBar.text, !text.isEmpty else {
             return
         }
-        if dataTask != nil {
-            dataTask?.cancel()
-        }
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        let expectedCharSet = NSCharacterSet.urlQueryAllowed
-        let searchTerm = text.addingPercentEncoding(withAllowedCharacters: expectedCharSet)!
-        let url = URL(string: "https://itunes.apple.com/search?media=music&entity=song&term=\(searchTerm)")
-        dataTask = defaultSession.dataTask(with: url!) { data, response, error in
-            DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            }
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode == 200 {
-                    self.updateSearchResults(data)
-                }
-            }
-        }
-        dataTask?.resume()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
