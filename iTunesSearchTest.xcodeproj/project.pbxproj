@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F0EC20220DB66A5006F300D /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0EC20120DB66A5006F300D /* Track.swift */; };
+		7F0EC20420DB66B5006F300D /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0EC20320DB66B5006F300D /* TrackList.swift */; };
+		7F0EC20720DB696F006F300D /* DHURLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0EC20620DB696F006F300D /* DHURLSessionMock.swift */; };
+		7F0EC20820DB696F006F300D /* DHURLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0EC20620DB696F006F300D /* DHURLSessionMock.swift */; };
+		7F0EC20920DB696F006F300D /* DHURLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0EC20620DB696F006F300D /* DHURLSessionMock.swift */; };
 		7FB7B66C20DB4C390099A765 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7B66B20DB4C390099A765 /* AppDelegate.swift */; };
-		7FB7B66E20DB4C390099A765 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7B66D20DB4C390099A765 /* ViewController.swift */; };
+		7FB7B66E20DB4C390099A765 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7B66D20DB4C390099A765 /* SearchViewController.swift */; };
 		7FB7B67120DB4C3A0099A765 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FB7B66F20DB4C3A0099A765 /* Main.storyboard */; };
 		7FB7B67320DB4C3B0099A765 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FB7B67220DB4C3B0099A765 /* Assets.xcassets */; };
 		7FB7B67620DB4C3B0099A765 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FB7B67420DB4C3B0099A765 /* LaunchScreen.storyboard */; };
@@ -34,9 +39,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F0EC20120DB66A5006F300D /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		7F0EC20320DB66B5006F300D /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
+		7F0EC20620DB696F006F300D /* DHURLSessionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHURLSessionMock.swift; sourceTree = "<group>"; };
 		7FB7B66820DB4C390099A765 /* iTunesSearchTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesSearchTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FB7B66B20DB4C390099A765 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7FB7B66D20DB4C390099A765 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7FB7B66D20DB4C390099A765 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7FB7B67020DB4C3A0099A765 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7FB7B67220DB4C3B0099A765 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7FB7B67520DB4C3B0099A765 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,6 +82,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F0EC20020DB6693006F300D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7F0EC20120DB66A5006F300D /* Track.swift */,
+				7F0EC20320DB66B5006F300D /* TrackList.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7F0EC20520DB68C6006F300D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7F0EC20620DB696F006F300D /* DHURLSessionMock.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		7FB7B65F20DB4C390099A765 = {
 			isa = PBXGroup;
 			children = (
@@ -97,8 +122,10 @@
 		7FB7B66A20DB4C390099A765 /* iTunesSearchTest */ = {
 			isa = PBXGroup;
 			children = (
+				7F0EC20520DB68C6006F300D /* Supporting Files */,
+				7F0EC20020DB6693006F300D /* Models */,
 				7FB7B66B20DB4C390099A765 /* AppDelegate.swift */,
-				7FB7B66D20DB4C390099A765 /* ViewController.swift */,
+				7FB7B66D20DB4C390099A765 /* SearchViewController.swift */,
 				7FB7B66F20DB4C3A0099A765 /* Main.storyboard */,
 				7FB7B67220DB4C3B0099A765 /* Assets.xcassets */,
 				7FB7B67420DB4C3B0099A765 /* LaunchScreen.storyboard */,
@@ -274,8 +301,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FB7B66E20DB4C390099A765 /* ViewController.swift in Sources */,
+				7F0EC20720DB696F006F300D /* DHURLSessionMock.swift in Sources */,
+				7FB7B66E20DB4C390099A765 /* SearchViewController.swift in Sources */,
 				7FB7B66C20DB4C390099A765 /* AppDelegate.swift in Sources */,
+				7F0EC20220DB66A5006F300D /* Track.swift in Sources */,
+				7F0EC20420DB66B5006F300D /* TrackList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F0EC20820DB696F006F300D /* DHURLSessionMock.swift in Sources */,
 				7FB7B68120DB4C3B0099A765 /* iTunesSearchTestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F0EC20920DB696F006F300D /* DHURLSessionMock.swift in Sources */,
 				7FB7B68C20DB4C3B0099A765 /* iTunesSearchTestUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
