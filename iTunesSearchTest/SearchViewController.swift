@@ -15,8 +15,8 @@ class SearchViewController: UIViewController {
     
     // MARK: Stored Properties
     private var searchResults = [Track]()
-    var defaultSession: DHURLSession = URLSession(configuration: URLSessionConfiguration.default)
-    var dataTask: URLSessionDataTask?
+    private var defaultSession: DHURLSession = URLSession(configuration: URLSessionConfiguration.default)
+    private var dataTask: URLSessionDataTask?
     private lazy var tapRecognizer: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(SearchViewController.dismissKeyboard))
     }()
@@ -32,6 +32,8 @@ class SearchViewController: UIViewController {
         searchBar.resignFirstResponder()
     }
     // MARK: Handling Search Results
+    //FIXME: needs refactor, move the parse out of the ViewController,
+    //implementation incomplete, only printing the response, not showing in the tableview
     func updateSearchResults(_ data: Data?) {
         searchResults.removeAll()
         do {
@@ -54,30 +56,32 @@ class SearchViewController: UIViewController {
 }
 // MARK: SearchBar Delegate
 extension SearchViewController: UISearchBarDelegate {
+   //FIXME: needs refactor, move the request logic out of the ViewController
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         dismissKeyboard()
-        if !searchBar.text!.isEmpty {
-            if dataTask != nil {
-                dataTask?.cancel()
-            }
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            let expectedCharSet = NSCharacterSet.urlQueryAllowed
-            let searchTerm = searchBar.text!.addingPercentEncoding(withAllowedCharacters: expectedCharSet)!
-            let url = URL(string: "https://itunes.apple.com/search?media=music&entity=song&term=\(searchTerm)")
-            dataTask = defaultSession.dataTask(with: url!) { data, response, error in
-                DispatchQueue.main.async {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-                if let error = error {
-                    print(error.localizedDescription)
-                } else if let httpResponse = response as? HTTPURLResponse {
-                    if httpResponse.statusCode == 200 {
-                        self.updateSearchResults(data)
-                    }
-                }
-            }
-            dataTask?.resume()
+        guard let text = searchBar.text, !text.isEmpty else {
+            return
         }
+        if dataTask != nil {
+            dataTask?.cancel()
+        }
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        let expectedCharSet = NSCharacterSet.urlQueryAllowed
+        let searchTerm = text.addingPercentEncoding(withAllowedCharacters: expectedCharSet)!
+        let url = URL(string: "https://itunes.apple.com/search?media=music&entity=song&term=\(searchTerm)")
+        dataTask = defaultSession.dataTask(with: url!) { data, response, error in
+            DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    self.updateSearchResults(data)
+                }
+            }
+        }
+        dataTask?.resume()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -93,7 +97,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
-    
+    //FIXME: placeholder cell, missing correct implementation
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
