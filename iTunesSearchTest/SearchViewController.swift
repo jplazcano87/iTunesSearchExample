@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
     private var searchResults = [Track]()
     var defaultSession: DHURLSession = URLSession(configuration: URLSessionConfiguration.default)
     var dataTask: URLSessionDataTask?
-    private  lazy var tapRecognizer: UITapGestureRecognizer = {
+    private lazy var tapRecognizer: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(SearchViewController.dismissKeyboard))
     }()
     
@@ -32,8 +32,6 @@ class SearchViewController: UIViewController {
         searchBar.resignFirstResponder()
     }
     // MARK: Handling Search Results
-    
-    // This helper method helps parse response JSON NSData into an array of Track objects.
     func updateSearchResults(_ data: Data?) {
         searchResults.removeAll()
         do {

@@ -20,10 +20,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 Created by dasdom on 05.01.16.
-Updated to Swift 3 by Audrey Tam on 28.11.16
 */
 
 import Foundation
+
+typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
 
 public protocol DHURLSession {
   func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
@@ -33,7 +34,6 @@ public protocol DHURLSession {
 extension URLSession: DHURLSession { }
 
 public final class URLSessionMock: DHURLSession {
-  
   var url: URL?
   var request: URLRequest?
   private let dataTaskMock: URLSessionDataTaskMock
@@ -61,8 +61,6 @@ public final class URLSessionMock: DHURLSession {
   }
   
   final private class URLSessionDataTaskMock: URLSessionDataTask {
-    
-    typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
     var completionHandler: CompletionHandler?
     var taskResponse: (Data?, URLResponse?, Error?)?
     
