@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Track: Decodable {
+public struct Track: Decodable {
     var trackName: String
     var artistName: String
     var previewUrl: String

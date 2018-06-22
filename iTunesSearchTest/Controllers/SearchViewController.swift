@@ -13,6 +13,9 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    // MARK: - Injections
+    internal var networkClient = NetworkClient.shared
+    
     // MARK: Stored Properties
     private var searchResults = [Track]()
     private var defaultSession: DHURLSession = URLSession(configuration: URLSessionConfiguration.default)
@@ -24,35 +27,20 @@ class SearchViewController: UIViewController {
     // MARK: LifeCycle Methos
     override func viewDidLoad() {
         super.viewDidLoad()
-        resultsTableView.tableFooterView = UIView()
+        prepareTableView()
     }
     
     // MARK: Keyboard dismissal
     @objc func dismissKeyboard() {
         searchBar.resignFirstResponder()
     }
-    // MARK: Handling Search Results
-    //FIXME: needs refactor, move the parse out of the ViewController,
-    //implementation incomplete, only printing the response, not showing in the tableview
-    func updateSearchResults(_ data: Data?) {
-        searchResults.removeAll()
-        do {
-            if let data = data {
-                let decoder = JSONDecoder()
-                let searchResults = try decoder.decode(TrackList.self, from: data)
-                print(searchResults)
-            } else {
-                print("JSON Error")
-            }
-        } catch let error as NSError {
-            print("Error parsing results: \(error.localizedDescription)")
-        }
-        DispatchQueue.main.async {
-            self.resultsTableView.reloadData()
-            self.resultsTableView.setContentOffset(CGPoint.zero, animated: false)
-        }
+    
+    private func prepareTableView() {
+        let nib = UINib(nibName: SearchResultCellTableViewCell.NibName, bundle: .main)
+        resultsTableView.register(nib, forCellReuseIdentifier: SearchResultCellTableViewCell.ReuseIdentifier)
+        resultsTableView.tableFooterView = UIView()
     }
-
+    
 }
 // MARK: SearchBar Delegate
 extension SearchViewController: UISearchBarDelegate {
@@ -61,8 +49,19 @@ extension SearchViewController: UISearchBarDelegate {
         guard let text = searchBar.text, !text.isEmpty else {
             return
         }
+        networkClient.getTrackOrArtist(forTerm: text, { [weak self] tracks in
+            guard let strongSelf = self else { return }
+            strongSelf.searchResults = tracks
+            self?.resultsTableView.reloadData()
+            self?.resultsTableView.setContentOffset(CGPoint.zero, animated: false)
+            
+            }, { [weak self] error in
+                // guard let strongSelf = self else { return }
+                // strongSelf.collectionView.refreshControl?.endRefreshing()
+                print("Tracks download failed: \(error)")
+        })
     }
-    
+    // MARK: Keyboard handler methods
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         view.addGestureRecognizer(tapRecognizer)
     }
@@ -78,7 +77,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     //FIXME: placeholder cell, missing correct implementation
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: SearchResultCellTableViewCell.ReuseIdentifier)
+            as? SearchResultCellTableViewCell else {
+                return UITableViewCell()
+        }
+        let track = searchResults[indexPath.row]
+        cell.configureCell(withTrack: track)
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
     }
     
 }

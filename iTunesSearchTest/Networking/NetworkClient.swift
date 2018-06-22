@@ -14,6 +14,10 @@ public final class NetworkClient {
     internal let baseURL: URL
     internal let session = URLSession.shared
     
+    // MARK: - typealias
+    public typealias SuccessHandler = ([Track]) -> Void
+    public typealias FailureHandler = (NetworkError) -> Void
+    
     // MARK: - Class Constructors
     public static let shared: NetworkClient = {
         let file = Bundle.main.path(forResource: "ServerEnvironments", ofType: "plist")!
@@ -31,11 +35,9 @@ public final class NetworkClient {
     }
     
     // MARK: - Request
-    func getTrackOrArtist(forTerm searchTerm: String,
-                          _ success: @escaping ([Track]) -> Void,
-                          _ failure: @escaping (NetworkError) -> Void) {
-        let success: ([Track]) -> Void = { products in
-            DispatchQueue.main.async { success(products) }
+    public func getTrackOrArtist(forTerm searchTerm: String, _ success: @escaping SuccessHandler, _ failure: @escaping FailureHandler) {
+        let success: ([Track]) -> Void = { tracks in
+            DispatchQueue.main.async { success(tracks) }
         }
         let failure: (NetworkError) -> Void = { error in
             DispatchQueue.main.async { failure(error) }
