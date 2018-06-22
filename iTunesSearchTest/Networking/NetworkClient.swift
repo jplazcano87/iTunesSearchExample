@@ -42,12 +42,17 @@ public final class NetworkClient {
             DispatchQueue.main.async { failure(error) }
         }
         let expectedCharSet = NSCharacterSet.urlQueryAllowed
-        let searchTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: expectedCharSet)!
+        let searchTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: expectedCharSet)
+        guard let search = searchTerm else {
+            failure(NetworkError.invalidQuery)
+            return
+        }
+        
         var components = URLComponents(string: self.baseURL)
         components?.queryItems = [
             URLQueryItem(name: "media", value: "music"),
             URLQueryItem(name: "entity", value: "song"),
-            URLQueryItem(name: "term", value: searchTerm)
+            URLQueryItem(name: "term", value: search)
         ]
         guard let url = components?.url else {
             failure(NetworkError.invalidURL)
