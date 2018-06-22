@@ -9,7 +9,7 @@
 import XCTest
 @testable import iTunesSearchTest
 
-class iTunesSearchTestTests: XCTestCase {
+class ITunesSearchTestTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
