@@ -31,7 +31,6 @@ class SearchViewController: UIViewController {
     private lazy var tapRecognizer: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(SearchViewController.dismissKeyboard))
     }()
-    
     private var state = State.initial {
         didSet {
             setFooterView()
@@ -120,5 +119,4 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return rowHeigth
     }
-    
 }
