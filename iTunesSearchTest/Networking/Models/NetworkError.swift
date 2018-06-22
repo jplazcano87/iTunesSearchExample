@@ -17,6 +17,8 @@ public enum NetworkError: Error {
     case networkProblem(Error)
     case unknown(HTTPURLResponse?)
     case userCancelled
+    case invalidURL
+    case invalidQuery
     
     public init(error: Error) {
         self = .networkProblem(error)
@@ -51,7 +53,8 @@ public enum NetworkError: Error {
         case .networkProblem: return 10001
         case .unknown:        return 10002
         case .userCancelled: return 9999
-       
+        case .invalidURL: return 9998
+        case .invalidQuery: return 9997
         }
     }
 }
