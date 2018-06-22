@@ -12,6 +12,12 @@ class SearchViewController: UIViewController {
     // MARK: IBOutlets
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var errorView: UIView!
+    @IBOutlet var emptyView: UIView!
+    @IBOutlet weak var emptyLabel: UILabel!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet var loadingView: UIView!
     // MARK: - Constants
     private let rowHeigth: CGFloat = 70.0
     
@@ -25,6 +31,13 @@ class SearchViewController: UIViewController {
     private lazy var tapRecognizer: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(SearchViewController.dismissKeyboard))
     }()
+    
+    private var state = State.initial {
+        didSet {
+            setFooterView()
+            resultsTableView.reloadData()
+        }
+    }
     
     // MARK: LifeCycle Methods
     override func viewDidLoad() {
@@ -40,7 +53,25 @@ class SearchViewController: UIViewController {
     private func prepareTableView() {
         let nib = UINib(nibName: SearchResultCellTableViewCell.NibName, bundle: .main)
         resultsTableView.register(nib, forCellReuseIdentifier: SearchResultCellTableViewCell.ReuseIdentifier)
-        resultsTableView.tableFooterView = UIView()
+        state = .initial
+    }
+    // MARK: - View Configuration
+    func setFooterView() {
+        switch state {
+        case .initial:
+             emptyLabel.text = "Try searching by 👨‍🎤 Artist or 🎵 Song"
+             resultsTableView.tableFooterView = emptyView
+        case .error(let error):
+            errorLabel.text = error.localizedDescription
+            resultsTableView.tableFooterView = errorView
+        case .loading:
+            resultsTableView.tableFooterView = loadingView
+        case .empty:
+                emptyLabel.text = "No results 🎶"
+            resultsTableView.tableFooterView = emptyView
+        case .populated:
+            resultsTableView.tableFooterView = nil
+        }
     }
     
 }
@@ -51,16 +82,15 @@ extension SearchViewController: UISearchBarDelegate {
         guard let text = searchBar.text, !text.isEmpty else {
             return
         }
+        state = .loading
         networkClient.getTrackOrArtist(forTerm: text, { [weak self] tracks in
             guard let strongSelf = self else { return }
             strongSelf.searchResults = tracks
-            self?.resultsTableView.reloadData()
-            self?.resultsTableView.setContentOffset(CGPoint.zero, animated: false)
-            
+            strongSelf.state = tracks.isEmpty ? .empty : .populated
+            strongSelf.resultsTableView.setContentOffset(CGPoint.zero, animated: false)
             }, { [weak self] error in
-                // guard let strongSelf = self else { return }
-                // strongSelf.collectionView.refreshControl?.endRefreshing()
-                print("Tracks download failed: \(error)")
+                guard let strongSelf = self else { return }
+                strongSelf.state = .error(error)
         })
     }
     // MARK: Keyboard handler methods

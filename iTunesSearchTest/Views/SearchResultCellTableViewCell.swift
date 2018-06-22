@@ -9,26 +9,20 @@
 import UIKit
 
 class SearchResultCellTableViewCell: UITableViewCell {
-    
+    // MARK: Constants
     static let ReuseIdentifier = String(describing: SearchResultCellTableViewCell.self)
     static let NibName = String(describing: SearchResultCellTableViewCell.self)
-    
+    // MARK: IBOutlets
     @IBOutlet weak var trackLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
-    
+    // MARK: Cell Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        selectionStyle = .none
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    }
-    
+    // MARK: Cell Configuration
     func configureCell(withTrack track: Track) {
-        trackLabel.text = track.trackName
-        artistLabel.text = track.artistName
+        trackLabel.text = "🎵 \(track.trackName)"
+        artistLabel.text = "👨‍🎤 \(track.artistName)"
     }
-    
 }

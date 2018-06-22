@@ -11,7 +11,7 @@ import UIKit
 
 public final class NetworkClient {
     // MARK: - Instance Properties
-    internal let baseURL: URL
+    internal let baseURL: String
     internal let session = URLSession.shared
     
     // MARK: - typealias
@@ -25,12 +25,11 @@ public final class NetworkClient {
         guard let urlString = dictionary["base_url"] as? String else {
             fatalError()
         }
-        let url = URL(string: urlString)!
-        return NetworkClient(baseURL: url)
+        return NetworkClient(baseURL: urlString)
     }()
     
     // MARK: - Object Lifecycle
-    private init(baseURL: URL) {
+    private init(baseURL: String) {
         self.baseURL = baseURL
     }
     
@@ -42,11 +41,18 @@ public final class NetworkClient {
         let failure: (NetworkError) -> Void = { error in
             DispatchQueue.main.async { failure(error) }
         }
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let expectedCharSet = NSCharacterSet.urlQueryAllowed
         let searchTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: expectedCharSet)!
-        let url = URL(string: "https://itunes.apple.com/search?media=music&entity=song&term=\(searchTerm)")!
-        
+        var components = URLComponents(string: self.baseURL)
+        components?.queryItems = [
+            URLQueryItem(name: "media", value: "music"),
+            URLQueryItem(name: "entity", value: "song"),
+            URLQueryItem(name: "term", value: searchTerm)
+        ]
+        guard let url = components?.url else {
+            failure(NetworkError.invalidURL)
+            return
+        }
         let task = session.dataTask(with: url, completionHandler: { (data, response, error) in
             let decoder = JSONDecoder()
             guard let httpResponse = response as? HTTPURLResponse,
