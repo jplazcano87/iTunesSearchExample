@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,30 +18,29 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name Placeholder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lrs-C9-jBq">
-                        <rect key="frame" x="8" y="16" width="304" height="24"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name Placeholder" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zWj-qx-ylA">
-                        <rect key="frame" x="8" y="48" width="304" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="cCt-Fr-fI6"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="29g-vj-36X">
+                        <rect key="frame" x="8" y="8" width="304" height="73.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Song Name Placeholder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lrs-C9-jBq">
+                                <rect key="frame" x="0.0" y="0.0" width="304" height="59"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name Placeholder" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zWj-qx-ylA">
+                                <rect key="frame" x="0.0" y="59" width="304" height="14.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="zWj-qx-ylA" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Ccb-Ht-WfZ"/>
-                    <constraint firstItem="zWj-qx-ylA" firstAttribute="leading" secondItem="lrs-C9-jBq" secondAttribute="leading" id="Hqn-cg-vjl"/>
-                    <constraint firstItem="zWj-qx-ylA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="f5z-3L-yNm"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="zWj-qx-ylA" secondAttribute="bottom" constant="11" id="iE6-AK-18b"/>
-                    <constraint firstAttribute="trailing" secondItem="lrs-C9-jBq" secondAttribute="trailing" constant="8" id="kEX-FI-2E0"/>
-                    <constraint firstItem="zWj-qx-ylA" firstAttribute="top" secondItem="lrs-C9-jBq" secondAttribute="bottom" constant="8" symbolic="YES" id="oHj-CQ-9LO"/>
-                    <constraint firstAttribute="trailing" secondItem="zWj-qx-ylA" secondAttribute="trailing" constant="8" id="vla-nC-RON"/>
+                    <constraint firstItem="29g-vj-36X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="7LP-ac-GPg"/>
+                    <constraint firstItem="29g-vj-36X" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="NY0-St-HVe"/>
+                    <constraint firstAttribute="trailing" secondItem="29g-vj-36X" secondAttribute="trailing" constant="8" id="Qnf-xn-Cq0"/>
+                    <constraint firstAttribute="bottom" secondItem="29g-vj-36X" secondAttribute="bottom" constant="8" id="lCP-IJ-BvA"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

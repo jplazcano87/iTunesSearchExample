@@ -12,6 +12,8 @@ class SearchViewController: UIViewController {
     // MARK: IBOutlets
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    // MARK: - Constants
+    private let rowHeigth: CGFloat = 70.0
     
     // MARK: - Injections
     internal var networkClient = NetworkClient.shared
@@ -24,7 +26,7 @@ class SearchViewController: UIViewController {
         UITapGestureRecognizer(target: self, action: #selector(SearchViewController.dismissKeyboard))
     }()
     
-    // MARK: LifeCycle Methos
+    // MARK: LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareTableView()
@@ -34,7 +36,7 @@ class SearchViewController: UIViewController {
     @objc func dismissKeyboard() {
         searchBar.resignFirstResponder()
     }
-    
+    // MARK: Internal Methods
     private func prepareTableView() {
         let nib = UINib(nibName: SearchResultCellTableViewCell.NibName, bundle: .main)
         resultsTableView.register(nib, forCellReuseIdentifier: SearchResultCellTableViewCell.ReuseIdentifier)
@@ -75,7 +77,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
-    //FIXME: placeholder cell, missing correct implementation
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: SearchResultCellTableViewCell.ReuseIdentifier)
@@ -87,7 +88,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return rowHeigth
     }
     
 }
