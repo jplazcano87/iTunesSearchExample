@@ -12,13 +12,16 @@
 		7F0EC20720DB696F006F300D /* DHURLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0EC20620DB696F006F300D /* DHURLSessionMock.swift */; };
 		7F0EC20820DB696F006F300D /* DHURLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0EC20620DB696F006F300D /* DHURLSessionMock.swift */; };
 		7F0EC20920DB696F006F300D /* DHURLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0EC20620DB696F006F300D /* DHURLSessionMock.swift */; };
-		7F4951CB20DC52A60048D773 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4951CA20DC52A60048D773 /* NetworkClient.swift */; };
+		7F45A5AE20DD6CAA0008D6F5 /* SearchAppProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F45A5AD20DD6CAA0008D6F5 /* SearchAppProtocol.swift */; };
+		7F45A5B020DD6D8F0008D6F5 /* SearchListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F45A5AF20DD6D8F0008D6F5 /* SearchListPresenter.swift */; };
+		7F45A5B420DD753C0008D6F5 /* SearchListWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F45A5B320DD753C0008D6F5 /* SearchListWireFrame.swift */; };
+		7F45A5B820DF15330008D6F5 /* SearchListRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F45A5B720DF15330008D6F5 /* SearchListRemoteDataManager.swift */; };
+		7F45A5BB20DF1EB30008D6F5 /* SearchListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F45A5BA20DF1EB30008D6F5 /* SearchListInteractor.swift */; };
 		7F4951CD20DC52DC0048D773 /* ServerEnvironments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F4951CC20DC52DC0048D773 /* ServerEnvironments.plist */; };
 		7F4951D020DC54530048D773 /* Int+HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4951CF20DC54530048D773 /* Int+HTTPStatusCode.swift */; };
 		7F4951D420DC54F60048D773 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4951D320DC54F60048D773 /* NetworkError.swift */; };
 		7F4951D920DC70ED0048D773 /* SearchResultCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4951D720DC70ED0048D773 /* SearchResultCellTableViewCell.swift */; };
 		7F4951DA20DC70ED0048D773 /* SearchResultCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4951D820DC70ED0048D773 /* SearchResultCellTableViewCell.xib */; };
-		7F4951DC20DC8B220048D773 /* TableViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4951DB20DC8B220048D773 /* TableViewState.swift */; };
 		7FB7B66C20DB4C390099A765 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7B66B20DB4C390099A765 /* AppDelegate.swift */; };
 		7FB7B66E20DB4C390099A765 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7B66D20DB4C390099A765 /* SearchViewController.swift */; };
 		7FB7B67120DB4C3A0099A765 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FB7B66F20DB4C3A0099A765 /* Main.storyboard */; };
@@ -49,13 +52,16 @@
 		7F0EC20120DB66A5006F300D /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		7F0EC20320DB66B5006F300D /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
 		7F0EC20620DB696F006F300D /* DHURLSessionMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHURLSessionMock.swift; sourceTree = "<group>"; };
-		7F4951CA20DC52A60048D773 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		7F45A5AD20DD6CAA0008D6F5 /* SearchAppProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppProtocol.swift; sourceTree = "<group>"; };
+		7F45A5AF20DD6D8F0008D6F5 /* SearchListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListPresenter.swift; sourceTree = "<group>"; };
+		7F45A5B320DD753C0008D6F5 /* SearchListWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListWireFrame.swift; sourceTree = "<group>"; };
+		7F45A5B720DF15330008D6F5 /* SearchListRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListRemoteDataManager.swift; sourceTree = "<group>"; };
+		7F45A5BA20DF1EB30008D6F5 /* SearchListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListInteractor.swift; sourceTree = "<group>"; };
 		7F4951CC20DC52DC0048D773 /* ServerEnvironments.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ServerEnvironments.plist; sourceTree = "<group>"; };
 		7F4951CF20DC54530048D773 /* Int+HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+HTTPStatusCode.swift"; sourceTree = "<group>"; };
 		7F4951D320DC54F60048D773 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		7F4951D720DC70ED0048D773 /* SearchResultCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCellTableViewCell.swift; sourceTree = "<group>"; };
 		7F4951D820DC70ED0048D773 /* SearchResultCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCellTableViewCell.xib; sourceTree = "<group>"; };
-		7F4951DB20DC8B220048D773 /* TableViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewState.swift; sourceTree = "<group>"; };
 		7FB7B66820DB4C390099A765 /* iTunesSearchTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesSearchTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FB7B66B20DB4C390099A765 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FB7B66D20DB4C390099A765 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -96,19 +102,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7F0EC20020DB6693006F300D /* Models */ = {
+		7F0EC20020DB6693006F300D /* Entities */ = {
 			isa = PBXGroup;
 			children = (
 				7F0EC20120DB66A5006F300D /* Track.swift */,
 				7F0EC20320DB66B5006F300D /* TrackList.swift */,
-				7F4951DB20DC8B220048D773 /* TableViewState.swift */,
 			);
-			path = Models;
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		7F0EC20520DB68C6006F300D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7FB7B67220DB4C3B0099A765 /* Assets.xcassets */,
 				7FB7B66B20DB4C390099A765 /* AppDelegate.swift */,
 				7F0EC20620DB696F006F300D /* DHURLSessionMock.swift */,
 				7F4951CC20DC52DC0048D773 /* ServerEnvironments.plist */,
@@ -116,14 +122,61 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7F4951C920DC52740048D773 /* Networking */ = {
+		7F45A5AC20DD6C6F0008D6F5 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				7F4951CA20DC52A60048D773 /* NetworkClient.swift */,
+				7F45A5AF20DD6D8F0008D6F5 /* SearchListPresenter.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		7F45A5B120DD6D960008D6F5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7F45A5AD20DD6CAA0008D6F5 /* SearchAppProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		7F45A5B220DD75130008D6F5 /* WireFrame */ = {
+			isa = PBXGroup;
+			children = (
+				7F45A5B320DD753C0008D6F5 /* SearchListWireFrame.swift */,
+			);
+			path = WireFrame;
+			sourceTree = "<group>";
+		};
+		7F45A5B520DF13F40008D6F5 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				7F45A5B620DF15030008D6F5 /* Remote */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		7F45A5B620DF15030008D6F5 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				7F45A5B720DF15330008D6F5 /* SearchListRemoteDataManager.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		7F45A5B920DF1E5A0008D6F5 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				7F45A5BA20DF1EB30008D6F5 /* SearchListInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		7F45A5BC20DF240B0008D6F5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
 				7F4951D220DC54E60048D773 /* Models */,
 				7F4951CE20DC543D0048D773 /* Extensions */,
 			);
-			path = Networking;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		7F4951CE20DC543D0048D773 /* Extensions */ = {
@@ -132,14 +185,6 @@
 				7F4951CF20DC54530048D773 /* Int+HTTPStatusCode.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		7F4951D120DC54930048D773 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				7FB7B66D20DB4C390099A765 /* SearchViewController.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		7F4951D220DC54E60048D773 /* Models */ = {
@@ -153,6 +198,7 @@
 		7F4951D620DC5BE80048D773 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7FB7B66D20DB4C390099A765 /* SearchViewController.swift */,
 				7FB7B67420DB4C3B0099A765 /* LaunchScreen.storyboard */,
 				7FB7B66F20DB4C3A0099A765 /* Main.storyboard */,
 				7F4951D720DC70ED0048D773 /* SearchResultCellTableViewCell.swift */,
@@ -184,13 +230,16 @@
 		7FB7B66A20DB4C390099A765 /* iTunesSearchTest */ = {
 			isa = PBXGroup;
 			children = (
-				7F4951D620DC5BE80048D773 /* Views */,
+				7F45A5BC20DF240B0008D6F5 /* Utils */,
+				7F45A5B520DF13F40008D6F5 /* DataManager */,
+				7F0EC20020DB6693006F300D /* Entities */,
+				7F45A5B920DF1E5A0008D6F5 /* Interactor */,
+				7F45A5AC20DD6C6F0008D6F5 /* Presenters */,
+				7F45A5B120DD6D960008D6F5 /* Protocols */,
 				7F0EC20520DB68C6006F300D /* Supporting Files */,
-				7F4951C920DC52740048D773 /* Networking */,
-				7F0EC20020DB6693006F300D /* Models */,
-				7F4951D120DC54930048D773 /* Controllers */,
+				7F4951D620DC5BE80048D773 /* Views */,
+				7F45A5B220DD75130008D6F5 /* WireFrame */,
 				7FB7B67720DB4C3B0099A765 /* Info.plist */,
-				7FB7B67220DB4C3B0099A765 /* Assets.xcassets */,
 			);
 			path = iTunesSearchTest;
 			sourceTree = "<group>";
@@ -366,14 +415,17 @@
 			files = (
 				7F0EC20720DB696F006F300D /* DHURLSessionMock.swift in Sources */,
 				7F4951D420DC54F60048D773 /* NetworkError.swift in Sources */,
+				7F45A5B020DD6D8F0008D6F5 /* SearchListPresenter.swift in Sources */,
 				7FB7B66E20DB4C390099A765 /* SearchViewController.swift in Sources */,
 				7FB7B66C20DB4C390099A765 /* AppDelegate.swift in Sources */,
 				7F0EC20220DB66A5006F300D /* Track.swift in Sources */,
 				7F0EC20420DB66B5006F300D /* TrackList.swift in Sources */,
 				7F4951D020DC54530048D773 /* Int+HTTPStatusCode.swift in Sources */,
-				7F4951DC20DC8B220048D773 /* TableViewState.swift in Sources */,
+				7F45A5BB20DF1EB30008D6F5 /* SearchListInteractor.swift in Sources */,
+				7F45A5B820DF15330008D6F5 /* SearchListRemoteDataManager.swift in Sources */,
+				7F45A5B420DD753C0008D6F5 /* SearchListWireFrame.swift in Sources */,
+				7F45A5AE20DD6CAA0008D6F5 /* SearchAppProtocol.swift in Sources */,
 				7F4951D920DC70ED0048D773 /* SearchResultCellTableViewCell.swift in Sources */,
-				7F4951CB20DC52A60048D773 /* NetworkClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
