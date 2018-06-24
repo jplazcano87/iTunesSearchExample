@@ -40,25 +40,21 @@ class SearchListRemoteDataManager: SearchListRemoteDataManagerInputProtocol {
             remoteRequestHandler?.onError(error: .invalidURL)
             return
         }
-        let task = session.dataTask(with: url, completionHandler: {[weak self] (data, response, error) in
-            let decoder = JSONDecoder()
-            guard let httpResponse = response as? HTTPURLResponse,
-                httpResponse.statusCode.isSuccessHTTPCode,
-                let data = data,
-                let trackList = try? decoder.decode(TrackList.self, from: data)  else {
-                    guard let strongSelf = self else { return }
-                    DispatchQueue.main.async {
-                        if let error = error {
-                            strongSelf.remoteRequestHandler?.onError(error: NetworkError(error: error))
-                        } else {
-                            strongSelf.remoteRequestHandler?.onError(error: NetworkError(response: response))
-                        }
-                    }
-                    return
-            }
-            guard let strongSelf = self else { return }
+        let task = session.dataTask(with: url, completionHandler: {(data, response, error) in
             DispatchQueue.main.async {
-                strongSelf.remoteRequestHandler?.onResutlsRetrieved(withTracks: trackList.results)
+                let decoder = JSONDecoder()
+                guard let httpResponse = response as? HTTPURLResponse,
+                    httpResponse.statusCode.isSuccessHTTPCode,
+                    let data = data,
+                    let trackList = try? decoder.decode(TrackList.self, from: data)  else {
+                        if let error = error {
+                            self.remoteRequestHandler?.onError(error: NetworkError(error: error))
+                        } else {
+                            self.remoteRequestHandler?.onError(error: NetworkError(response: response))
+                        }
+                        return
+                }
+                self.remoteRequestHandler?.onResutlsRetrieved(withTracks: trackList.results)
             }
         })
         task.resume()
