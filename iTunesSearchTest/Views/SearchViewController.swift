@@ -35,7 +35,6 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
-        searchBar.becomeFirstResponder()
     }
     
     // MARK: Keyboard dismissal
@@ -84,7 +83,7 @@ extension SearchViewController: SearchListViewProtocol {
         emptyLabel.text = "Try searching by 👨‍🎤 Artist or 🎵 Song"
         resultsTableView.tableFooterView = emptyView
     }
-
+    
     func showLoading() {
         resultsTableView.tableFooterView = loadingView
     }
