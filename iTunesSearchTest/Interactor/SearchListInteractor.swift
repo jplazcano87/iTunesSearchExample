@@ -14,7 +14,8 @@ class SearchListInteractor: SearchListInteractorInputProtocol {
     
     func retrieveTrackOrArtist(forTerm searchTerm: String?) {
         guard let searchTerm = searchTerm else {
-            presenter?.onError()
+            presenter?.onError("Invalid Search Text")
+            presenter?.reloadData()
             return
         }
         remoteDatamanager?.retrieveResultsList(withSearchTerm: searchTerm)
@@ -22,10 +23,16 @@ class SearchListInteractor: SearchListInteractorInputProtocol {
 }
 extension SearchListInteractor: SearchListRemoteDataManagerOutputProtocol {
     func onResutlsRetrieved(withTracks tracks: [Track]) {
-        presenter?.didRetrieveResults(tracks)
+        if tracks.isEmpty {
+            presenter?.showEmpty()
+        } else {
+            presenter?.didRetrieveResults(tracks)
+        }
+        presenter?.reloadData()
     }
     
-    func onError() {
-        presenter?.onError()
+    func onError(error: NetworkError) {
+        presenter?.onError(error.localizedDescription)
+        presenter?.reloadData()
     }
 }

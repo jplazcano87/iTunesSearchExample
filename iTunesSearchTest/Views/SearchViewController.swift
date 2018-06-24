@@ -13,11 +13,11 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet var errorView: UIView!
-    @IBOutlet var emptyView: UIView!
+    @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var emptyLabel: UILabel!
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet var loadingView: UIView!
+    @IBOutlet weak var loadingView: UIView!
     // MARK: - Constants
     private let rowHeigth: CGFloat = 70.0
     public static let viewIdentifier = String(describing: SearchViewController.self)
@@ -30,21 +30,25 @@ class SearchViewController: UIViewController {
     private lazy var tapRecognizer: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(SearchViewController.dismissKeyboard))
     }()
-
+    
     // MARK: LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.viewDidLoad()
+        searchBar.becomeFirstResponder()
     }
     
     // MARK: Keyboard dismissal
     @objc func dismissKeyboard() {
         searchBar.resignFirstResponder()
     }
+    
 }
 // MARK: SearchBar Delegate
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         dismissKeyboard()
+        searchResults.removeAll()
         presenter?.searchItunesWith(searchTerm: searchBar.text)
     }
     // MARK: Keyboard handler methods
@@ -57,6 +61,14 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 extension SearchViewController: SearchListViewProtocol {
+    func showError(_ errorDescription: String) {
+        errorLabel.text = errorDescription
+        resultsTableView.tableFooterView = errorView
+    }
+    
+    func reloadData() {
+        resultsTableView.reloadData()
+    }
     
     func prepareTableView() {
         let nib = UINib(nibName: SearchResultCellTableViewCell.NibName, bundle: .main)
@@ -64,21 +76,15 @@ extension SearchViewController: SearchListViewProtocol {
     }
     
     func showResults(with tracks: [Track]) {
-        self.searchResults = tracks
+        searchResults = tracks
         resultsTableView.tableFooterView = nil
-        resultsTableView.reloadData()
     }
     
     func showInitial() {
         emptyLabel.text = "Try searching by 👨‍🎤 Artist or 🎵 Song"
         resultsTableView.tableFooterView = emptyView
     }
-    
-    func showError() {
-        //  errorLabel.text = error.localizedDescription
-        resultsTableView.tableFooterView = errorView
-    }
-    
+
     func showLoading() {
         resultsTableView.tableFooterView = loadingView
     }

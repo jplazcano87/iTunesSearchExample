@@ -17,12 +17,12 @@ protocol SearchListPresenterProtocol: class {
     func viewDidLoad()
     func searchItunesWith(searchTerm term: String?)
 }
+
 protocol SearchListWireFrameProtocol: class {
     static func createSearchModule() -> UIViewController
 }
 protocol SearchListViewProtocol: class {
     var presenter: SearchListPresenterProtocol? { get set }
-    
     // PRESENTER -> VIEW
     func prepareTableView()
     
@@ -30,23 +30,25 @@ protocol SearchListViewProtocol: class {
     
     func showInitial()
     
-    func showError()
+    func showError(_ errorDescription: String)
     
     func showLoading()
     
     func showEmpty()
+    
+    func reloadData()
 }
 protocol SearchListInteractorOutputProtocol: class {
     // INTERACTOR -> PRESENTER
     func didRetrieveResults(_ tracks: [Track])
     func showEmpty()
-    func onError()
+    func onError(_ errorDescription: String)
+    func reloadData()
 }
 
 protocol SearchListInteractorInputProtocol: class {
     var presenter: SearchListInteractorOutputProtocol? { get set }
     var remoteDatamanager: SearchListRemoteDataManagerInputProtocol? { get set }
-    
     // PRESENTER -> INTERACTOR
     func retrieveTrackOrArtist(forTerm searchTerm: String?)
 }
@@ -54,7 +56,7 @@ protocol SearchListInteractorInputProtocol: class {
 protocol SearchListRemoteDataManagerOutputProtocol: class {
     // REMOTEDATAMANAGER -> INTERACTOR
     func onResutlsRetrieved(withTracks tracks: [Track])
-    func onError()
+    func onError(error: NetworkError)
 }
 protocol SearchListRemoteDataManagerInputProtocol: class {
     var remoteRequestHandler: SearchListRemoteDataManagerOutputProtocol? { get set }

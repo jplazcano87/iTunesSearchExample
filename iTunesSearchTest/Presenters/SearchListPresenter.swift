@@ -20,19 +20,24 @@ class SearchListPresenter: SearchListPresenterProtocol {
     }
     
     func searchItunesWith(searchTerm term: String?) {
+        view?.showLoading()
         interactor?.retrieveTrackOrArtist(forTerm: term)
     }
 }
 extension SearchListPresenter: SearchListInteractorOutputProtocol {
+    func onError(_ errorDescription: String) {
+        view?.showError(errorDescription)
+    }
+    
+    func reloadData() {
+        view?.reloadData()
+    }
+    
     func didRetrieveResults(_ tracks: [Track]) {
         view?.showResults(with: tracks)
     }
     
     func showEmpty() {
         view?.showEmpty()
-    }
-    
-    func onError() {
-        view?.showError()
     }
 }
